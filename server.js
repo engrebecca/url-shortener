@@ -30,6 +30,12 @@ app.get("/", async (req, res) => {
     res.json(data);
 })
 
+// Route for getting stats for a shortcode
+app.get("/:shortcode/stats", async (req, res) => {
+    const stats = await db.findOne({ short: req.params.shortcode }, "registerDate accessDate count").exec();
+    res.json(stats);
+})
+
 // Connect to the Mongo DB
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/url_shortener",
