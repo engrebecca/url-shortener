@@ -24,6 +24,12 @@ app.get("/:shortcode", async (req, res) => {
     res.json(longUrl);
 })
 
+// Route for getting all shortcodes in db to validate if a user's submitted shortcode already exists
+app.get("/", async (req, res) => {
+    const data = await db.find({}, "short").exec();
+    res.json(data);
+})
+
 // Connect to the Mongo DB
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost/url_shortener",
