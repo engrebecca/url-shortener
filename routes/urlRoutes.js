@@ -24,7 +24,9 @@ app.get("/:shortcode", async (req, res) => {
 // Route for getting all shortcodes in db to validate if a user's submitted shortcode already exists
 app.get("/", async (req, res) => {
     const data = await db.find({}, "short").exec();
-    res.json(data);
+    let newObj = { urls: data }
+    res.render("index", newObj)
+    // res.json(data);
 })
 
 // Route for getting stats for a shortcode
