@@ -19,8 +19,18 @@ app.post("/newUrl", async (req, res) => {
 });
 
 // Route to get the long url associated with a shortcode
+// app.get("/:shortcode", async (req, res) => {
+//     const longUrl = await db.findOne({ short: req.params.shortcode }, "long").exec();
+//     if (longUrl == null) {
+//         return res.sendStatus(404);
+//     }
+//     res.json(longUrl);
+// })
 app.get("/:shortcode", async (req, res) => {
-    const longUrl = await db.findOne({ short: req.params.shortcode }, "long").exec();
+    const longUrl = await db.findOneAndUpdate({ short: req.params.shortcode }, { $inc: { count: 1 } });
+    if (longUrl == null) {
+        return res.sendStatus(404);
+    }
     res.json(longUrl);
 })
 
