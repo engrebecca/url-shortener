@@ -15,7 +15,13 @@ app.post("/newUrl", async (req, res) => {
         short: req.body.short,
         registerDate: new Date(),
         accessDate: new Date()
-    })
+    });
+});
+
+// Route to get the long url associated with a shortcode
+app.get("/:shortcode", async (req, res) => {
+    const longUrl = await db.findOne({ short: req.params.shortcode }, "long").exec();
+    res.json(longUrl);
 })
 
 // Connect to the Mongo DB
