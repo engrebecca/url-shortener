@@ -44,7 +44,6 @@ $(document).on("ready", () => {
         };
         console.log(newEntryUser);
 
-
         $.ajax("/newUrl", {
             type: "POST",
             data: newEntryUser

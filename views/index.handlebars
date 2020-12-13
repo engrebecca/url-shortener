@@ -37,12 +37,13 @@
         <div class="form-group row">
             <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="shortcodeUser" minlength="4" placeholder="AbC123" required>
+                <input type="text" class="form-control" id="shortcodeUser" pattern="[a-zA-Z0-9]{4,}"
+                    placeholder="AbC123" required>
                 <div class="valid-feedback">
                     OK!
                 </div>
                 <div class="invalid-feedback">
-                    Please enter a code that is minimum 4 characters in length.
+                    Please enter a code that is minimum 4 characters in length and contains only letters and numbers.
                 </div>
             </div>
         </div>
