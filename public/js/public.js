@@ -3,12 +3,28 @@ $(document).on("ready", () => {
     $("#urlForm").on("submit", e => {
         e.preventDefault();
         // If a user's shortcode is available, add to the database
+        // let newEntry = {
+        //     url: $("#longUrl").val(),
+        //     short: $("#shortcode").val()
+        // };
         // If a user's shortcode is not available, return error message
+
         // If a user doesn't specify a shortcode, create a random shortcode
+        let newShortcode = "";
+        function generateShortcode() {
+            console.log("Generating code")
+            const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            for (let i = 0; i < 6; i++) {
+                newShortcode += characters[Math.floor(Math.random() * 62)]
+            }
+            console.log(newShortcode);
+        }
+        generateShortcode();
         let newEntry = {
             url: $("#longUrl").val(),
-            short: $("#shortcode").val()
+            short: newShortcode
         };
+
         console.log(newEntry);
         $("#longUrl").val("");
         $("#shortcode").val("");
