@@ -4,12 +4,20 @@ const db = require("../models/url");
 
 // Route to create new entry in database
 app.post("/newUrl", async (req, res) => {
-    await db.create({
-        long: req.body.url,
-        short: req.body.short,
-        registerDate: new Date(),
-        accessDate: new Date()
-    });
+    // Create new document in collection if shortcode is available
+    try {
+        const newUrl = await db.create({
+            long: req.body.url,
+            short: req.body.short,
+            registerDate: new Date(),
+            accessDate: new Date()
+        });
+        res.json(newUrl);
+    }
+    // Return error response code if shortcode already exists
+    catch (err) {
+        return res.sendStatus(400);
+    }
 });
 
 // Route to get the long url associated with a shortcode and update count and updatedAt fields

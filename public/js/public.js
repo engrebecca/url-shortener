@@ -2,12 +2,6 @@ $(document).on("ready", () => {
     // Create POST request to database with new url entry and random shortcode
     $("#urlFormRandom").on("submit", e => {
         e.preventDefault();
-        // let urlData = $(this).data
-        // let shortUrls = urlData.map(url => {
-        //     url.short
-        // })
-        // console.log(urlData);
-        // If a user doesn't specify a shortcode, create a random shortcode
         let newShortcode = "";
         function generateShortcode() {
             console.log("Generating code")
@@ -29,8 +23,10 @@ $(document).on("ready", () => {
             type: "POST",
             data: newEntryRandom
         }).then(
-            () => {
-                location.reload();
+            (data) => {
+                console.log(data)
+                $("#randomUrl").text(data.short);
+                // location.reload();
             }
         );
     });
@@ -48,8 +44,10 @@ $(document).on("ready", () => {
             type: "POST",
             data: newEntryUser
         }).then(
-            () => {
-                location.reload();
+            (data) => {
+                console.log(data);
+                $("#userUrl").text(data.short);
+                // location.reload();
             }
         );
     });
