@@ -25,8 +25,9 @@ $(document).on("ready", () => {
         }).then(
             (data) => {
                 console.log(data)
-                $("#randomUrl").text(data.short);
-                // location.reload();
+                if (data) {
+                    $("#randomUrl").text(data.short);
+                }
             }
         );
     });
@@ -47,7 +48,6 @@ $(document).on("ready", () => {
             (data) => {
                 console.log(data);
                 $("#userUrl").text(data.short);
-                // location.reload();
             }
         );
     });
