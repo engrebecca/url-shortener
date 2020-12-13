@@ -15,12 +15,6 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="shortcodeRandom" class="col-sm-2 col-form-label">Shortcode (optional)</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="shortcodeRandom" minlength="4" placeholder="AbC123">
-            </div>
-        </div>
-        <div class="form-group row">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary" data-url="{{urlData}}">Submit</button>
             </div>
@@ -41,11 +35,14 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode (optional)</label>
+            <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="shortcodeUser" minlength="4" placeholder="AbC123" required>
+                <div class="valid-feedback">
+                    OK!
+                </div>
                 <div class="invalid-feedback">
-                    Please enter a code that is minimum 4 characters.
+                    Please enter a code that is minimum 4 characters in length.
                 </div>
             </div>
         </div>
