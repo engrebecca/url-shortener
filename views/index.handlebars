@@ -1,21 +1,79 @@
 <div class="container">
-    <form class="mt-3" id="urlForm">
+    {{!-- Form for generating a random shortcode --}}
+    <form class="needs-validation mt-3" id="urlFormRandom" novalidate>
         <div class="form-group row">
-            <label for="longUrl" class="col-sm-2 col-form-label">URL</label>
+            <label for="longUrlRandom" class="col-sm-2 col-form-label">URL</label>
             <div class="col-sm-10">
-                <input type="url" class="form-control" id="longUrl" placeholder="www.example.com">
+                <input type="url" class="form-control" id="longUrlRandom" placeholder="https://www.example.com"
+                    required>
+                <div class="valid-feedback">
+                    OK!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid URL beginning with "https://".
+                </div>
             </div>
         </div>
         <div class="form-group row">
-            <label for="shortcode" class="col-sm-2 col-form-label">Shortcode (optional)</label>
+            <label for="shortcodeRandom" class="col-sm-2 col-form-label">Shortcode (optional)</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="shortcode" placeholder="AbC123">
+                <input type="text" class="form-control" id="shortcodeRandom" minlength="4" placeholder="AbC123">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                <button type="submit" class="btn btn-primary" data-url="{{urlData}}">Submit</button>
             </div>
         </div>
     </form>
+    {{!-- Form for creating a user generated shortcode --}}
+    <form class="needs-validation mt-3" id="urlFormUser" novalidate>
+        <div class="form-group row">
+            <label for="longUrlUser" class="col-sm-2 col-form-label">URL</label>
+            <div class="col-sm-10">
+                <input type="url" class="form-control" id="longUrlUser" placeholder="https://www.example.com" required>
+                <div class="valid-feedback">
+                    OK!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a valid URL beginning with "https://".
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode (optional)</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="shortcodeUser" minlength="4" placeholder="AbC123" required>
+                <div class="invalid-feedback">
+                    Please enter a code that is minimum 4 characters.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" data-url="{{urlData}}">Submit</button>
+            </div>
+        </div>
+    </form>
+    <p>{{urlData}}</p>
 </div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
