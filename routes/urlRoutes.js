@@ -31,13 +31,13 @@ app.get("/:shortcode", async (req, res) => {
     }
 })
 
-// Route for getting all shortcodes in db to validate if a user's submitted shortcode already exists
+// Route for displaying the index page
 app.get("/", async (req, res) => {
     const data = await db.find({}, "short").exec();
     res.render("index");
 })
 
-// Route for getting stats for a shortcode
+// Route for getting stats for a shortcode and displaying the stats page
 app.get("/:shortcode/stats", async (req, res) => {
     try {
         const stats = await db.findOne({ short: req.params.shortcode }, "createdAt updatedAt count short long").lean().exec();
