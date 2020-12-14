@@ -40,8 +40,12 @@ app.get("/", async (req, res) => {
 // Route for getting stats for a shortcode
 app.get("/:shortcode/stats", async (req, res) => {
     try {
-        const stats = await db.findOne({ short: req.params.shortcode }, "createdAt updatedAt count").exec();
-        res.json(stats);
+        const stats = await db.findOne({ short: req.params.shortcode }, "createdAt updatedAt count short long").lean().exec();
+        let statsObj = {
+            urlStats: stats
+        }
+        console.log(statsObj)
+        res.render("stats", statsObj);
     }
     catch (err) {
         return res.sendStatus(404);
