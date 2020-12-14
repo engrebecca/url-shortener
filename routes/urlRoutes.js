@@ -24,7 +24,7 @@ app.post("/newUrl", async (req, res) => {
 app.get("/:shortcode", async (req, res) => {
     try {
         const longUrl = await db.findOneAndUpdate({ short: req.params.shortcode }, { $inc: { count: 1 } });
-        res.json(longUrl);
+        res.redirect(longUrl.long)
     }
     catch (err) {
         return res.sendStatus(404);
