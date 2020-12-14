@@ -24,7 +24,6 @@ $(document).on("ready", () => {
             data: newEntryRandom
         }).then(
             (data) => {
-                console.log(data)
                 if (data) {
                     $("#randomUrl").text(data.short);
                 }
@@ -46,7 +45,6 @@ $(document).on("ready", () => {
             data: newEntryUser
         }).then(
             (data) => {
-                console.log(data);
                 $("#userUrl").text(data.short);
             }
         );

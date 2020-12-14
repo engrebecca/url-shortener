@@ -1,60 +1,84 @@
+<div class="jumbotron jumbotron-fluid bg-dark">
+    <div class="container">
+        <h1 class="display-4 text-center text-white">URL Shortener</h1>
+        <p class="lead text-center text-white">Choose to generate a random or custom shortcode for easy access to a long
+            URL.
+        </p>
+    </div>
+</div>
 <div class="container">
     {{!-- Form for generating a random shortcode --}}
-    <form class="needs-validation mt-3" id="urlFormRandom" novalidate>
-        <div class="form-group row">
-            <label for="longUrlRandom" class="col-sm-2 col-form-label">URL</label>
-            <div class="col-sm-10">
-                <input type="url" class="form-control" id="longUrlRandom" placeholder="https://www.example.com"
-                    required>
-                <div class="valid-feedback">
-                    OK!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter a valid URL beginning with "https://".
+    <div class="card container-card">
+        <h2 class="card-title text-center">Generate a Random Shortcode</h2>
+        <form class="needs-validation mt-3" id="urlFormRandom" novalidate>
+            <div class="form-group row">
+                <label for="longUrlRandom" class="col-sm-2 col-form-label">URL</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="longUrlRandom" placeholder="https://www.example.com"
+                        required>
+                    <div class="valid-feedback">
+                        OK!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a valid URL beginning with "https://".
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary" data-url="{{urlData}}">Submit</button>
+            <div class="form-group row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-info" data-url="{{urlData}}">Generate Shortcode</button>
+                </div>
+            </div>
+        </form>
+        <div class="card code-card">
+            <div class="card-body text-center">
+                <p id="randomUrl">Your Generated Code</p>
             </div>
         </div>
-    </form>
-    <p id="randomUrl">Generated Code</p>
+    </div>
     {{!-- Form for creating a user generated shortcode --}}
-    <form class="needs-validation mt-3" id="urlFormUser" novalidate>
-        <div class="form-group row">
-            <label for="longUrlUser" class="col-sm-2 col-form-label">URL</label>
-            <div class="col-sm-10">
-                <input type="url" class="form-control" id="longUrlUser" placeholder="https://www.example.com" required>
-                <div class="valid-feedback">
-                    OK!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter a valid URL beginning with "https://".
-                </div>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="shortcodeUser" pattern="[a-zA-Z0-9]{4,}"
-                    placeholder="AbC123" required>
-                <div class="valid-feedback">
-                    OK!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter a code that is minimum 4 characters in length and contains only letters and numbers.
+    <div class="card container-card">
+        <h2 class="card-title text-center">Generate a Custom Shortcode</h2>
+        <form class="needs-validation mt-3" id="urlFormUser" novalidate>
+            <div class="form-group row">
+                <label for="longUrlUser" class="col-sm-2 col-form-label">URL</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="longUrlUser" placeholder="https://www.example.com"
+                        required>
+                    <div class="valid-feedback">
+                        OK!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a valid URL beginning with "https://".
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary" data-url="{{urlData}}">Submit</button>
+            <div class="form-group row">
+                <label for="shortcodeUser" class="col-sm-2 col-form-label">Shortcode</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="shortcodeUser" pattern="[a-zA-Z0-9]{4,}"
+                        placeholder="AbC123" required>
+                    <div class="valid-feedback">
+                        OK!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter a code that is minimum 4 characters in length and contains only letters and
+                        numbers.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-info" data-url="{{urlData}}">Generate Shortcode</button>
+                </div>
+            </div>
+        </form>
+        <div class="card code-card">
+            <div class="card-body text-center">
+                <p id="userUrl">Your Generated Code</p>
             </div>
         </div>
-    </form>
-    <p id="userUrl">Generated Code</p>
+    </div>
 </div>
 
 <script>
